@@ -23,6 +23,29 @@ services:
     networks:
       - default
 
+  db:
+    image: mysql:5.7
+    volumes:
+      - mysql-db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
+    networks:
+      - default
+
 networks:
   default:
     driver: bridge
+
+# VOLUMES
+volumes:
+  # MYSQL
+  mysql-db:
+    driver: local
+  # REDIS
+  redis-db:
+    driver: local
